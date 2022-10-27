@@ -91,4 +91,24 @@ public class CandidatoTest : IClassFixture<WebApplicationFactory<program>>
         }
     };
 
+    [Theory(DisplayName = "GET para listar candidato pelo id")]
+    [MemberData(nameof(ShouldGetCandidatoData))]
+    public async Task ShouldGetCandidato(Candidato userExpected)
+    {
+        var response =  await client.GetAsync("api/candidatos/1");
+        var content = await response.Content.ReadAsStringAsync();
+        var result = JsonConvert.DeserializeObject<Candidato>(content);
+        result.Should().BeEquivalentTo(userExpected);
+    }
+
+    public static readonly TheoryData<Candidato> ShouldGetCandidatoData = new()
+    {
+        new Candidato 
+        { 
+            CandidatoId = 1,
+            CandidatoName = "Test",
+            CandidatoEmail="Test",
+            CandidatoCpf="Test"
+        }
+    };
 }
