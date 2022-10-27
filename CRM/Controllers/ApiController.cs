@@ -28,4 +28,12 @@ public class ApiController : ControllerBase
         var candidatos = _candidatos.GetAll();
         return candidatos;
     }
+
+    [HttpDelete("candidatos/{id}")]
+    public Candidato DeleteCandidatos([FromRoute] string id)
+    {
+        var candidatoId = Convert.ToInt32(id);
+        var deleted = _candidatos.Delete(candidatoId);
+        return deleted;
+    }
 }

@@ -22,4 +22,12 @@ public class CandidatoRepository
     var candidatos = _context.Candidatos.ToList();
     return candidatos;
   }
+
+  public Candidato Delete(int id)
+  {
+    var candidato = _context.Candidatos.Where(x => x.CandidatoId == id).First();
+    _context.Remove(candidato);
+    _context.SaveChanges();
+    return candidato;
+  }
 }
