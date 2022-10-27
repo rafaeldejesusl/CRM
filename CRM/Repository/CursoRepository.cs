@@ -17,4 +17,9 @@ public class CursoRepository
     return curso;
   }
 
+  public List<Curso> GetAll()
+  {
+    var cursos = _context.Cursos.ToList();
+    return cursos;
+  }
 }

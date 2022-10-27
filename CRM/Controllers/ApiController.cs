@@ -53,4 +53,11 @@ public class ApiController : ControllerBase
         var created = _cursos.Create(curso);
         return created;
     }
+    
+    [HttpGet("cursos")]
+    public List<Curso> GetAllCursos()
+    {
+        var cursos = _cursos.GetAll();
+        return cursos;
+    }
 }
