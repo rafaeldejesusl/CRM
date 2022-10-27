@@ -87,4 +87,10 @@ public class ApiController : ControllerBase
         return created;
     }
     
+    [HttpGet("inscricoes")]
+    public List<Inscricao> GetAllInscricoes()
+    {
+        var inscricoes = _inscricoes.GetAll();
+        return inscricoes;
+    }
 }
