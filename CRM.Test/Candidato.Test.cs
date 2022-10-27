@@ -111,4 +111,28 @@ public class CandidatoTest : IClassFixture<WebApplicationFactory<program>>
             CandidatoCpf="Test"
         }
     };
+
+    [Theory(DisplayName = "DELETE para apagar candidato pelo id")]
+    [MemberData(nameof(ShouldDeleteCandidatoData))]
+    public async Task ShouldDeleteCandidato(Candidato userExpected)
+    {
+        var response =  await client.DeleteAsync("api/candidatos/1");
+        var content = await response.Content.ReadAsStringAsync();
+        var result = JsonConvert.DeserializeObject<Candidato>(content);
+        result.Should().BeEquivalentTo(userExpected);
+        var responseEmpty =  await client.GetAsync("api/candidatos");
+        var contentEmpty = await responseEmpty.Content.ReadAsStringAsync();
+        contentEmpty.Should().BeEquivalentTo("[]");
+    }
+
+    public static readonly TheoryData<Candidato> ShouldDeleteCandidatoData = new()
+    {
+        new Candidato 
+        { 
+            CandidatoId = 1,
+            CandidatoName = "Test",
+            CandidatoEmail="Test",
+            CandidatoCpf="Test"
+        }
+    };
 }
