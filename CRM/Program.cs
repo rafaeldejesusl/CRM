@@ -35,3 +35,5 @@ var context = new MyContext();
 context.Database.EnsureCreated();
 
 app.Run();
+
+public partial class program {}
