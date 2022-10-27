@@ -10,11 +10,13 @@ public class ApiController : ControllerBase
 {
     private readonly CandidatoRepository _candidatos;
     private readonly CursoRepository _cursos;
+    private readonly InscricaoRepository _inscricoes;
 
     public ApiController(CandidatoRepository candidatoRepository, CursoRepository cursoRepository, InscricaoRepository inscricaoRepository)
     {
         _candidatos = candidatoRepository;
         _cursos = cursoRepository;
+        _inscricoes = inscricaoRepository;
     }
 
     [HttpPost("candidatos")]
@@ -76,4 +78,13 @@ public class ApiController : ControllerBase
         var curso = _cursos.GetById(cursoId);
         return curso;
     }
+
+    [HttpPost("inscricoes")]
+    public Inscricao CreateInscricoes([FromBody] Inscricao inscricao)
+    {
+        Console.WriteLine(inscricao.CandidatoId);
+        var created = _inscricoes.Create(inscricao);
+        return created;
+    }
+    
 }

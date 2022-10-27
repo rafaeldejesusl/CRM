@@ -9,6 +9,7 @@ builder.Services.AddDbContext<MyContext>();
 builder.Services.AddScoped<MyContext>();
 builder.Services.AddScoped<CandidatoRepository>();
 builder.Services.AddScoped<CursoRepository>();
+builder.Services.AddScoped<InscricaoRepository>();
 
 var app = builder.Build();
 
