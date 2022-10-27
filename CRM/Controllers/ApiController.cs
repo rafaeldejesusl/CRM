@@ -93,4 +93,12 @@ public class ApiController : ControllerBase
         var inscricoes = _inscricoes.GetAll();
         return inscricoes;
     }
+
+    [HttpDelete("inscricoes/{id}")]
+    public Inscricao DeleteInscricoes([FromRoute] string id)
+    {
+        var inscricaoId = Convert.ToInt32(id);
+        var deleted = _inscricoes.Delete(inscricaoId);
+        return deleted;
+    }
 }

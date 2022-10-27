@@ -31,4 +31,12 @@ public class InscricaoRepository
       select new Inscricao { InscricaoId = inscricao.InscricaoId, CandidatoId = inscricao.CandidatoId, Candidato = candidato, CursoId = inscricao.CursoId, Curso = curso };
     return inscricoes.ToList();
   }
+
+  public Inscricao Delete(int id)
+  {
+    var inscricao = _context.Inscricoes.Where(x => x.InscricaoId == id).First();
+    _context.Remove(inscricao);
+    _context.SaveChanges();
+    return inscricao;
+  }
 }
