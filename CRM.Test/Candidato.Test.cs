@@ -67,5 +67,28 @@ public class CandidatoTest : IClassFixture<WebApplicationFactory<program>>
         }
     };
 
+    [Theory(DisplayName = "GET para listar candidatos")]
+    [MemberData(nameof(ShouldGetAllCandidatosData))]
+    public async Task ShouldGetAllCandidatos(List<Candidato> usersExpected)
+    {
+        var response =  await client.GetAsync("api/candidatos");
+        var content = await response.Content.ReadAsStringAsync();
+        var result = JsonConvert.DeserializeObject<List<Candidato>>(content);
+        result.Should().BeEquivalentTo(usersExpected);
+    }
+
+    public static readonly TheoryData<List<Candidato>> ShouldGetAllCandidatosData = new()
+    {
+        new()
+        {
+            new Candidato 
+            { 
+              CandidatoId = 1,
+              CandidatoName = "Test",
+              CandidatoEmail="Test",
+              CandidatoCpf="Test"
+            }
+        }
+    };
 
 }
