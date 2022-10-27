@@ -17,4 +17,9 @@ public class CandidatoRepository
     return candidato;
   }
 
+  public List<Candidato> GetAll()
+  {
+    var candidatos = _context.Candidatos.ToList();
+    return candidatos;
+  }
 }

@@ -21,4 +21,11 @@ public class ApiController : ControllerBase
         var created = _candidatos.Create(candidato);
         return created;
     }
+    
+    [HttpGet("candidatos")]
+    public List<Candidato> GetAllCandidatos()
+    {
+        var candidatos = _candidatos.GetAll();
+        return candidatos;
+    }
 }
