@@ -30,4 +30,10 @@ public class CandidatoRepository
     _context.SaveChanges();
     return candidato;
   }
+
+  public Candidato? GetById(int id)
+  {
+    var candidato = _context.Candidatos.Where(x => x.CandidatoId == id).FirstOrDefault();
+    return candidato;
+  }
 }

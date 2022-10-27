@@ -36,4 +36,12 @@ public class ApiController : ControllerBase
         var deleted = _candidatos.Delete(candidatoId);
         return deleted;
     }
+
+    [HttpGet("candidatos/{id}")]
+    public Candidato? GetCandidatoById([FromRoute] string id)
+    {
+        var candidatoId = Convert.ToInt32(id);
+        var candidato = _candidatos.GetById(candidatoId);
+        return candidato;
+    }
 }
