@@ -30,4 +30,10 @@ public class CursoRepository
     _context.SaveChanges();
     return curso;
   }
+
+  public Curso? GetById(int id)
+  {
+    var curso = _context.Cursos.Where(x => x.CursoId == id).FirstOrDefault();
+    return curso;
+  }
 }
