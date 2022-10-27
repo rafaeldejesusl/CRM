@@ -3,6 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MyContext>();
+builder.Services.AddScoped<MyContext>();
 
 var app = builder.Build();
 
@@ -23,5 +25,8 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");;
+
+var context = new MyContext();
+context.Database.EnsureCreated();
 
 app.Run();
