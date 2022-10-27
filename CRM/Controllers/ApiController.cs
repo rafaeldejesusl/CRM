@@ -60,4 +60,12 @@ public class ApiController : ControllerBase
         var cursos = _cursos.GetAll();
         return cursos;
     }
+
+    [HttpDelete("cursos/{id}")]
+    public Curso DeleteCursos([FromRoute] string id)
+    {
+        var cursoId = Convert.ToInt32(id);
+        var deleted = _cursos.Delete(cursoId);
+        return deleted;
+    }
 }

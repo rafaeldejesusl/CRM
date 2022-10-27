@@ -22,4 +22,12 @@ public class CursoRepository
     var cursos = _context.Cursos.ToList();
     return cursos;
   }
+
+  public Curso Delete(int id)
+  {
+    var curso = _context.Cursos.Where(x => x.CursoId == id).First();
+    _context.Remove(curso);
+    _context.SaveChanges();
+    return curso;
+  }
 }
