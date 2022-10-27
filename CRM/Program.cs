@@ -1,3 +1,5 @@
+using CRM.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MyContext>();
 builder.Services.AddScoped<MyContext>();
+builder.Services.AddScoped<CandidatoRepository>();
+builder.Services.AddScoped<CursoRepository>();
 
 var app = builder.Build();
 
